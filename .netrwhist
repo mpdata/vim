@@ -1,0 +1,10 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_1='D:/myplace/appdata/vim'
+let g:netrw_dirhist_2='/cygdrive/d/myplace/workspace/afun/taskspool/ladies'
+let g:netrw_dirhist_3='/cygdrive/d/myplace/workspace/afun/taskspool/localpool/urlrule/sites/weipai.cn'
+let g:netrw_dirhist_4='/cygdrive/d/myplace/workspace/perl/urlrule'
+let g:netrw_dirhist_5='/cygdrive/d/myplace/workspace/perl/urlrule/common'
+let g:netrw_dirhist_6='/cygdrive/d/myplace/workspace/perl/urlrule'
+let g:netrw_dirhist_7='/cygdrive/d/myplace/workspace/perl/urlrule/0'
+let g:netrw_dirhist_8='/cygdrive/e/#Incoming/Torrents/#NSFW/producers'
