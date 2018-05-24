@@ -61,82 +61,20 @@ hi User1 term=inverse,bold cterm=inverse,bold ctermfg=red
 "set foldminlines=10
 "set foldlevel=3
 "set foldnestmax=3
-let g:C_AuthorName      = 'eotect'     
-let g:C_AuthorRef       = 'Eotect'                         
-let g:C_Email           = 'eotect@myplace'            
-let g:C_Company         = 'MYPLACE .HEL'    
 
-function ModifyTemplate(name) 
-        execute "%s/___AUTHOR___/eotect/g"
-        execute "%s/___EMAIL___/eotect@myplace/g"
-        execute "%s/___NAME___/" . a:name . "/g"
-        execute "%s/___DATE___/" . strftime("%Y-%m-%d %H:%M") . "/g"
-endfunction
-function PerlModuleNew(name) 
-    let dir = $XR_PERL_MODULE_DIR
-    if dir == ""
-        return 
-    endif
-    let name = substitute(a:name,"::","\/","g")
-    let filename = dir . "/" . name . ".pm"
-    execute "tabedit " . filename
-    if !filereadable(filename)
-        execute "0read !pmnew -o \"" . a:name . "\""
-    endif
-endfunction
-command -nargs=+ Pmnew call PerlModuleNew(<f-args>)
+"My Self
+let g:MyPlace_AuthorName      = 'eotect'     
+let g:MyPlace_AuthorRef       = 'Eotect'                         
+let g:MyPlace_Email           = 'eotect@myplace'            
+let g:MyPlace_Company         = 'MYPLACE HEL ORG.'    
 
-function PerlScriptNew(name)
-    let dir = $XR_PERL_SOURCE_DIR
-    if dir == ""
-        return
-    endif
-    let filename = dir . "/" . a:name . ".pl"
-    execute "tabedit " . filename
-    if !filereadable(filename)
-        execute "0read !plnew -o \"" . a:name . "\""
-    endif
-endfunction
-command -nargs=+ Plnew call PerlScriptNew(<f-args>)
+"C Support
+let g:C_AuthorName      = g:MyPlace_AuthorName     
+let g:C_AuthorRef       = g:MyPlace_AuthorRef      
+let g:C_Email           = g:MyPlace_Email          
+let g:C_Company         = g:MyPlace_Company        
+let g:C_LoadMenus		= "no"
 
-function ScriptNew(name)
-    let dir = $XR_SHELL_SOURCE_DIR
-    if dir == ""
-        return
-    endif
-    let filename = dir . "/" . a:name . ".sh"
-    execute "tabedit " . filename
-    if !filereadable(filename)
-        execute "0read " . dir . "/script_template"
-        call ModifyTemplate(a:name)
-    endif
-endfunction
-command -nargs=+ Shnew call ScriptNew(<f-args>)
-
-function CommandEdit(name)
-    let filename = system("which " . shellescape(a:name))
-    if filename != ""
-        execute "tabedit " . filename
-    else
-        echo a:name . " not found!"
-    endif
-endfunction
-command -nargs=+ Cmdedit call CommandEdit(<f-args>)
-
-function URLRuleEdit(name,...) 
-	let dir = $XR_PERL_SOURCE_DIR . "/urlrule/"
-	let lvl = a:0 ? a:1 : 0
-		let filename = "" . dir . lvl . "/" . a:name
-    if !filereadable(filename)
-		execute "tabedit " . filename
-		execute "0read " . dir . "TEMPLATE" 
-        call ModifyTemplate(a:name)
-		execute "set filetype=perl"
-	else
-		execute "tabedit " . filename
-	endif
-endfunction
-command -nargs=+ URnew call URLRuleEdit(<f-args>)
 
 
 au GUIEnter * simalt ~x
